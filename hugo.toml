@@ -26,7 +26,7 @@ title = 'Hugo Theme - Midori'
 
 [params]
     themeName = "Midori"
-    version = "0.1.0"
+    version = "0.1.1"
   [params.author]
     name = 'KFACBT'
     email = 'gytxtx@outlook.com'
