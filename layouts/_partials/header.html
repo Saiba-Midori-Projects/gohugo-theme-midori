@@ -1,2 +1,22 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<header class="site-header">
+  <div class="header-inner">
+    <!-- 左侧：站点名称 -->
+    <div class="header-left">
+      <a class="site-name" href="{{ "/" | relURL }}">
+        {{ .Site.Title }}
+      </a>
+    </div>
+
+    <!-- 右侧：当前页面 -->
+    <div class="header-right">
+      正在浏览:
+      <a class="current-page" href="{{ .RelPermalink }}">
+        {{ if .IsHome }}
+          首页
+        {{ else }}
+          {{ .Title }}
+        {{ end }}
+      </a>
+    </div>
+  </div>
+</header>

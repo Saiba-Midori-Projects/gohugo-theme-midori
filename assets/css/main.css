@@ -1,22 +1,323 @@
-body {
-  color: #222;
-  font-family: sans-serif;
-  line-height: 1.5;
-  margin: 1rem;
-  max-width: 768px;
+/* =========================================
+   1. CSS 变量定义 (主题核心)
+   ========================================= */
+:root {
+  /* 基础色彩 */
+  --primary-color: #44c96a;       /* 主题绿 */
+  --primary-overlay: rgba(68, 201, 106, 0.75); /* 背景遮罩色 */
+  
+  /* 背景与卡片 */
+  --bg-color: #f4f4f9;            /* 网页背景兜底色 */
+  --card-bg: rgba(255, 255, 255, 0.95); /* 卡片背景 (轻微透明) */
+  
+  /* 文字颜色 */
+  --text-main: #333333;           /* 标题/主要文字 */
+  --text-body: #555555;           /* 正文文字 */
+  --text-muted: #888888;          /* 辅助/灰色文字 */
+  --text-light: #999999;          /* 最浅的文字 */
+  
+  /* 链接与边框 */
+  --link-color: #007bff;
+  --link-hover: #0056b3;
+  --border-color: #eeeeee;
+  --divider-color: #ddd;
+  
+  /* 功能性 */
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
+  --code-bg: #f6f8fa;
+  --blockquote-bg: rgba(68, 201, 106, 0.1);
+  
+  /* 默认背景图占位 (如果在 HTML 未定义变量) */
+  --bg-img: none; 
 }
 
-header {
-  border-bottom: 1px solid #222;
+/* 深色模式变量覆盖 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-overlay: rgba(20, 30, 40, 0.85);
+    
+    --bg-color: #121212;
+    --card-bg: rgba(26, 26, 26, 0.95);
+    
+    --text-main: #e0e0e0;
+    --text-body: #c0c0c0;
+    --text-muted: #a0a0a0;
+    --text-light: #666666;
+    
+    --link-color: #4da6ff;
+    --link-hover: #80bfff;
+    --border-color: #333333;
+    --divider-color: #444444;
+    
+    --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --code-bg: #2d2d2d;
+    --blockquote-bg: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* =========================================
+   2. 全局重置与基础样式
+   ========================================= */
+* {
+  box-sizing: border-box; /* 推荐：更容易计算宽度 */
+}
+
+body {
+  font-family: 'Noto Sans SC', Arial, sans-serif;
+  margin: 0;
+  color: var(--text-body);
+  background-color: var(--bg-color);
+  
+  /* 背景图逻辑 */
+  background-image: 
+    linear-gradient(var(--primary-overlay), var(--primary-overlay)),
+    var(--bg-img); /* 这里使用 HTML 中传入的变量 */
+    
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /* 视差效果：背景固定 */
+  background-position: center;
+  
+  -webkit-font-smoothing: antialiased; /* 让字体更清晰 */
+}
+
+/* =========================================
+   3. 布局容器
+   ========================================= */
+.root {
+  display: flex;
+  
+  /* 确保容器至少占满全屏高度 */
+  min-height: 100vh;
+  
+  /* 关键点 1：移除 justify-content 和 align-items */
+  /* 不要在这里写 align-items: center */
+  
+  /* 关键点 2：保留 padding，防止卡片在手机端贴死屏幕边缘 */
+  padding: 2rem 1rem; 
+}
+
+.card {
+  /* 关键点 3：Flexbox 魔法 */
+  /* 在 flex 容器中，margin: auto 会自动分配剩余空间，
+     从而实现水平和垂直完美居中。
+     且当内容超出屏幕时，它会自动退化为正常的顶部对齐，不会导致头部被遮挡。 */
+  margin: auto;
+  
+  /* 保持之前的卡片样式 */
+  width: 100%;
+  max-width: 800px;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-card);
+  padding: 2.5rem;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 如果你想尝试毛玻璃，可以把 card-bg 设为半透明 */
+/* :root { --card-bg: rgba(255, 255, 255, 0.9); }
+@media (prefers-color-scheme: dark) { :root { --card-bg: rgba(26, 26, 26, 0.9); } }
+*/
+
+/* =========================================
+   4. 排版 (Typography)
+   ========================================= */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 { margin-top: 0; font-size: 1.8rem; }
+h2 { font-size: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
+h6 { color: var(--text-muted); font-weight: normal; margin: 0; display: flex; justify-content: space-between; }
+
+p {
+  color: var(--text-body);
+  line-height: 1.7; /* 增加行高，提升阅读舒适度 */
   margin-bottom: 1rem;
 }
 
-footer {
-  border-top: 1px solid #222;
-  margin-top: 1rem;
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-a {
-  color: #00e;
+a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid var(--divider-color);
+}
+
+li {
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* =========================================
+   5. Hugo 头部与尾部组件
+   ========================================= */
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  font-size: 14px;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left .site-name {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.header-right {
+  color: var(--text-muted);
+}
+
+.header-right .current-page {
+  color: var(--text-main);
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.header-right .current-page:hover,
+.header-left .site-name:hover {
+  color: var(--primary-color);
   text-decoration: none;
+}
+
+footer {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end; /* 右对齐 */
+}
+
+/* =========================================
+   6. 文章内容样式增强 (Markdown Content)
+   ========================================= */
+/* 图片 */
+main img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* 引用块 */
+main blockquote {
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid var(--primary-color);
+  background-color: var(--blockquote-bg);
+  color: var(--text-muted);
+  /* font-style: italic; */
+  border-radius: 0 4px 4px 0;
+}
+
+/* 行内代码 */
+main code {
+  background-color: var(--code-bg);
+  color: var(--primary-color);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  font-size: 0.9em;
+}
+
+/* 代码块 (如果不用 Chroma 高亮) */
+main pre {
+  background-color: var(--code-bg);
+  padding: 1rem;
+  overflow-x: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+main pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* 表格 */
+main table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+main th, main td {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+main th {
+  background-color: var(--code-bg);
+  font-weight: 600;
+}
+
+/* =========================================
+   7. 响应式设计 (Media Queries)
+   ========================================= */
+
+/* 平板尺寸 */
+@media (max-width: 1024px) {
+  .card {
+    width: 70%; /* 使用百分比，或者保持 max-width */
+  }
+}
+
+/* 手机尺寸 */
+@media (max-width: 768px) {
+  .root {
+    padding: 2rem 1rem;
+  }
+  
+  .card {
+    width: 100%;
+    padding: 1.5rem; /* 减小内边距 */
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .header-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.3rem; }
 }

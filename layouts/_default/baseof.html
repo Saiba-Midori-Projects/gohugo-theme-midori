@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+
+<head>
+    {{ partial "head.html" . }}
+</head>
+
+{{ $bg := .Site.Params.backgroundImage | default "images/default_bg.png" }}
+<body style="--bg-img: url('{{ $bg | relURL }}');">
+    <div class="root">
+        <div class="card">
+            <header>
+                {{ partial "header.html" . }}
+            </header>
+            <main>
+                {{ block "main" . }}{{ end }}
+            </main>
+            <hr />
+            <footer>
+                {{ partial "footer.html" . }}
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            const themeName = '{{ .Site.Params.themeName | default "Midori" }}';
+            const version = '{{ .Site.Params.version | default "0.1.0" }}';
+            const hugoVersion = '{{ hugo.Version }}';
+
+            console.log(
+                `%c Theme ${themeName} %c v${version} %c Hugo ${hugoVersion} `,
+                'background: #44c96a; color: #fff; padding: 5px 0; border-radius: 3px 0 0 3px; font-weight: bold;',
+                'background: #333; color: #fff; padding: 5px 0; font-weight: bold;',
+                'background: #eee; color: #333; padding: 5px 0; border-radius: 0 3px 3px 0;'
+            );
+        })();
+    </script>
+</body>
+
+</html>
