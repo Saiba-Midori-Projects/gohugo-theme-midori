@@ -5,6 +5,8 @@ Midori: A simple Hugo theme.
 
 Midori 是一个简洁、清爽的 Hugo 主题，基于 Hugo Pipes 提供 CSS/JS 构建与指纹（生产环境）能力，适合博客与文档型站点。
 
+![](./others/preview.png "Midori 主题预览")
+
 ## 安装
 您可以通过如下方式安装 Midori 主题：
 
