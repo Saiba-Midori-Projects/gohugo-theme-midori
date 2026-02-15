@@ -1,0 +1,18 @@
+name = "Midori"
+license = "MIT"
+licenselink = "https://github.com/Saiba-Midori-Projects/gohugo-theme-midori/blob/main/LICENSE"
+description = "A simple, minimal Hugo theme with clean layout."
+homepage = "https://github.com/Saiba-Midori-Projects/gohugo-theme-midori/gohugo-theme-midori"
+tags = ["simple", "minimal", "blog", "responsive"]
+features = ["dark-mode-ready", "hugo-pipes", "fingerprint", "menu-walk"]
+min_version = "0.146.0"
+
+[author]
+  name = "KFACBT"
+  homepage = "https://github.com/KFACBT"
+  email = "gytxtx@outlook.com"
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.146.0"

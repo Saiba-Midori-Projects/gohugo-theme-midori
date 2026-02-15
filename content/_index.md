@@ -28,7 +28,7 @@ draft = false
 
 这是~~删除线文本~~
 
-这是`行内代码`
+这是 `行内代码` 。
 
 ---
 
@@ -141,10 +141,16 @@ function hello() {
 这是一段需要 <mark>高亮显示的重点内容</mark>。
 
 > [!NOTE]
-> 这是一个普通的提示信息。
+> Useful information that users should know, even when skimming content.
 
 > [!TIP]
-> 这是一个小技巧。
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
 
 > [!WARNING]
-> 请注意，这个操作不可逆。
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
