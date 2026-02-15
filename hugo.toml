@@ -32,3 +32,12 @@ title = 'Hugo Theme - Midori'
     email = 'gytxtx@outlook.com'
 
 disableKinds = ["taxonomy", "term", "RSS"]
+
+# ==========================================================
+# Markdown 渲染设置
+# ==========================================================
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # 设置为 true 以允许在 Markdown 文件中直接写 HTML 标签
+      unsafe = true

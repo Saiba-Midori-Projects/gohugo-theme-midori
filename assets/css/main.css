@@ -26,6 +26,7 @@
   --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.08);
   --code-bg: #f6f8fa;
   --blockquote-bg: rgba(68, 201, 106, 0.1);
+  --mark-bg: rgba(255, 213, 0, 0.4); /* 高亮背景色 */
   
   /* 默认背景图占位 (如果在 HTML 未定义变量) */
   --bg-img: none; 
@@ -52,6 +53,7 @@
     --shadow-card: 0 4px 8px rgba(0, 0, 0, 0.4);
     --code-bg: #2d2d2d;
     --blockquote-bg: rgba(255, 255, 255, 0.05);
+    --mark-bg: rgba(255, 213, 0, 0.2);
   }
 }
 
@@ -232,7 +234,7 @@ main img {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* 引用块 */
+/* 引用块 - 基础样式 */
 main blockquote {
   margin: 1.5rem 0;
   padding: 0.5rem 1rem;
@@ -281,6 +283,122 @@ main th, main td {
 main th {
   background-color: var(--code-bg);
   font-weight: 600;
+}
+
+/* ----------------------------------
+   新增：常用 HTML 标签样式支持
+   ---------------------------------- */
+/* 键盘按键效果 <kbd>Ctrl</kbd> */
+main kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  color: #333;
+  display: inline-block;
+  font-size: 0.85em;
+  line-height: 1;
+  padding: 3px 5px;
+  font-family: monospace;
+}
+@media (prefers-color-scheme: dark) {
+  main kbd {
+    background-color: #333;
+    border-color: #555;
+    color: #eee;
+  }
+}
+
+/* 高亮文本 <mark>重点</mark> */
+main mark {
+  background-color: var(--mark-bg);
+  color: inherit;
+  padding: 0 0.2em;
+  border-radius: 2px;
+}
+
+/* ----------------------------------
+   新增：GFM Alerts 样式
+   ---------------------------------- */
+.markdown-alert {
+  margin: 1.5rem 0;
+  padding: 0.8rem 1rem;
+  border-left: 4px solid; /* 颜色由子类定义 */
+  border-radius: 0 4px 4px 0;
+  font-size: 0.95em;
+}
+
+.markdown-alert-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.markdown-alert-title svg {
+  margin-right: 8px;
+  fill: currentColor;
+}
+
+.markdown-alert-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* NOTE (蓝色) */
+.markdown-alert-note {
+  border-color: #0969da;
+  background-color: #ddf4ff;
+}
+.markdown-alert-note .markdown-alert-title { color: #0969da; }
+
+/* TIP (绿色) */
+.markdown-alert-tip {
+  border-color: #1a7f37;
+  background-color: #ddf4ff; /* GitHub 默认也是浅蓝背景，或可用浅绿 #dafbe1 */
+}
+/* Midori 主题修正：Tip 使用浅绿背景更符合主题 */
+.markdown-alert-tip { background-color: #dafbe1; } 
+.markdown-alert-tip .markdown-alert-title { color: #1a7f37; }
+
+/* IMPORTANT (紫色) */
+.markdown-alert-important {
+  border-color: #8250df;
+  background-color: #f8f1ff; 
+}
+.markdown-alert-important .markdown-alert-title { color: #8250df; }
+
+/* WARNING (橙/黄) */
+.markdown-alert-warning {
+  border-color: #9a6700;
+  background-color: #fff8c5;
+}
+.markdown-alert-warning .markdown-alert-title { color: #9a6700; }
+
+/* CAUTION (红色) */
+.markdown-alert-caution {
+  border-color: #d1242f;
+  background-color: #ffebe9;
+}
+.markdown-alert-caution .markdown-alert-title { color: #d1242f; }
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .markdown-alert-note { border-color: #1f6feb; background-color: rgba(31, 111, 235, 0.15); }
+  .markdown-alert-note .markdown-alert-title { color: #4493f8; }
+
+  .markdown-alert-tip { border-color: #238636; background-color: rgba(35, 134, 54, 0.15); }
+  .markdown-alert-tip .markdown-alert-title { color: #3fb950; }
+
+  .markdown-alert-important { border-color: #8957e5; background-color: rgba(137, 87, 229, 0.15); }
+  .markdown-alert-important .markdown-alert-title { color: #ab7df8; }
+
+  .markdown-alert-warning { border-color: #9e6a03; background-color: rgba(158, 106, 3, 0.15); }
+  .markdown-alert-warning .markdown-alert-title { color: #d29922; }
+
+  .markdown-alert-caution { border-color: #da3633; background-color: rgba(218, 54, 51, 0.15); }
+  .markdown-alert-caution .markdown-alert-title { color: #f85149; }
 }
 
 /* =========================================

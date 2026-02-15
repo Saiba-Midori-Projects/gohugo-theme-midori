@@ -126,6 +126,25 @@ function hello() {
 
 ## 十、HTML 混合使用（部分 Markdown 支持）
 
-<p style="color: red;">这是一段红色的 HTML 文本</p>
+<p style="color: red;">这是一段红色的 HTML 文本。</p>
 
-这是一段 <p style="color: blue;">蓝色</p> 的 Markdown / HTML 混排文本。
+这是一段 <span style="color: blue;">蓝色</span> 的 Markdown / HTML 混排文本。
+
+---
+
+## 十一、其他扩展语法
+
+这是一段普通文本，但是这里有 <span style="color: #44c96a; font-weight: bold;">绿色粗体文字</span>。
+
+使用键盘快捷键：<kbd>Ctrl</kbd> + <kbd>C</kbd> 复制。
+
+这是一段需要 <mark>高亮显示的重点内容</mark>。
+
+> [!NOTE]
+> 这是一个普通的提示信息。
+
+> [!TIP]
+> 这是一个小技巧。
+
+> [!WARNING]
+> 请注意，这个操作不可逆。
