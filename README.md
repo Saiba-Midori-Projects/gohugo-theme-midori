@@ -9,13 +9,13 @@ Midori 是一个简洁、清爽的 Hugo 主题，基于 Hugo Pipes 提供 CSS/JS
 您可以通过如下方式安装 Midori 主题：
 
 1. 作为子模块安装：
-  ```bash
-  git submodule add https://github.com/Saiba-Midori-Projects/gohugo-theme-midori.git themes/midori
-  ```
+   ```bash
+   git submodule add https://github.com/Saiba-Midori-Projects/gohugo-theme-midori.git themes/midori
+   ```
 2. 在站点配置中启用：
-  ```toml
-  theme = "midori"
-  ```
+   ```toml
+   theme = "midori"
+   ```
 
 ## 快速开始
 * 启动开发服务器：
@@ -27,9 +27,10 @@ Midori 是一个简洁、清爽的 Hugo 主题，基于 Hugo Pipes 提供 CSS/JS
   HUGO_ENV=production hugo
   ```
 
-## 站点配置示例
-在 `hugo.toml` 中：
+## 配置
+以下是一个示例配置文件，您可以按需求修改。
 
+在 `hugo.toml` 中：
 ```toml
 baseURL = "https://example.org/"
 languageCode = "zh-CN"
@@ -62,14 +63,14 @@ title = "Hugo Theme - Midori"
 disableKinds = ["RSS"] # 如需 Tags，请勿禁用 taxonomy/term
 ```
 
-## 可用参数
+## 参数
 * `params.themeName`：主题名（用于控制台输出）
 * `params.version`：主题版本（用于控制台输出）
 * `params.backgroundImage`：页面背景图（默认 `static/images/default_bg.png`）
 * `params.author.name` / `params.author.email`：作者信息
 * `favicon`：在 `static/favicon.ico` 下提供即可自动生效
 
-## 布局与资源
+## 结构
 本主题基于默认 Hugo 主题模板修改，结构如下：
 
 * 模板入口：`layouts/_default/baseof.html`
