@@ -224,6 +224,11 @@ footer {
 /* =========================================
    6. 文章内容样式增强 (Markdown Content)
    ========================================= */
+main a {
+  word-break: break-all;       /* CJK + 长英文都可硬折行 */
+  overflow-wrap: break-word;   /* 现代写法，遇到特别长的 word 允许拆行 */
+}
+
 /* 图片 */
 main img {
   max-width: 100%;
@@ -284,6 +289,7 @@ main th {
   background-color: var(--code-bg);
   font-weight: 600;
 }
+
 
 /* ----------------------------------
    新增：常用 HTML 标签样式支持
