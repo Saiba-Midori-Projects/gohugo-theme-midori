@@ -1,9 +1,15 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <section>
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-      {{ .Summary }}
-    </section>
-  {{ end }}
+  <article class="post-content">
+    {{ .Content }}
+    {{ range site.RegularPages }}
+      <section>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        {{ .Summary }}
+      </section>
+    {{ end }}
+  </article>
+{{ end }}
+
+{{ define "toc" }}
+  {{ partial "toc.html" . }}
 {{ end }}

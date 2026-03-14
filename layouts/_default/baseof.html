@@ -8,17 +8,21 @@
 {{ $bg := .Site.Params.backgroundImage | default "images/default_bg.png" }}
 <body style="--bg-img: url('{{ $bg | relURL }}');">
     <div class="root">
-        <div class="card">
-            <header>
-                {{ partial "header.html" . }}
-            </header>
-            <main>
-                {{ block "main" . }}{{ end }}
-            </main>
-            <hr />
-            <footer>
-                {{ partial "footer.html" . }}
-            </footer>
+        <div class="layout-shell{{ if ne .TableOfContents "" }} layout-shell--with-toc{{ end }}">
+            <div class="card">
+                <header>
+                    {{ partial "header.html" . }}
+                </header>
+                <main>
+                    {{ block "main" . }}{{ end }}
+                </main>
+                <hr />
+                <footer>
+                    {{ partial "footer.html" . }}
+                </footer>
+            </div>
+
+            {{ block "toc" . }}{{ end }}
         </div>
     </div>
 

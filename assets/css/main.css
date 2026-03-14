@@ -27,9 +27,15 @@
   --code-bg: #f6f8fa;
   --blockquote-bg: rgba(68, 201, 106, 0.1);
   --mark-bg: rgba(255, 213, 0, 0.4); /* 高亮背景色 */
+  --toc-width: 240px;
+  --content-width: 800px;
   
   /* 默认背景图占位 (如果在 HTML 未定义变量) */
   --bg-img: none; 
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* 深色模式变量覆盖 */
@@ -88,27 +94,27 @@ body {
    ========================================= */
 .root {
   display: flex;
-  
-  /* 确保容器至少占满全屏高度 */
   min-height: 100vh;
-  
-  /* 关键点 1：移除 justify-content 和 align-items */
-  /* 不要在这里写 align-items: center */
-  
-  /* 关键点 2：保留 padding，防止卡片在手机端贴死屏幕边缘 */
-  padding: 2rem 1rem; 
+  padding: 2rem 1rem;
+}
+
+.layout-shell {
+  width: 100%;
+  max-width: calc(var(--content-width) + var(--toc-width) + 2rem);
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, var(--content-width));
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+}
+
+.layout-shell--with-toc {
+  grid-template-columns: minmax(0, var(--content-width)) minmax(220px, var(--toc-width));
 }
 
 .card {
-  /* 关键点 3：Flexbox 魔法 */
-  /* 在 flex 容器中，margin: auto 会自动分配剩余空间，
-     从而实现水平和垂直完美居中。
-     且当内容超出屏幕时，它会自动退化为正常的顶部对齐，不会导致头部被遮挡。 */
-  margin: auto;
-  
-  /* 保持之前的卡片样式 */
   width: 100%;
-  max-width: 800px;
   background-color: var(--card-bg);
   box-shadow: var(--shadow-card);
   padding: 2.5rem;
@@ -116,6 +122,10 @@ body {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+main {
+  min-width: 0;
 }
 
 /* 如果你想尝试毛玻璃，可以把 card-bg 设为半透明 */
@@ -290,6 +300,103 @@ main th {
   font-weight: 600;
 }
 
+.post-content {
+  min-width: 0;
+}
+
+.post-content > :first-child {
+  margin-top: 0;
+}
+
+.post-content :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 1.5rem;
+}
+
+.toc-card {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: sticky;
+  top: 1.5rem;
+}
+
+.post-toc__inner {
+  min-width: 0;
+}
+
+.post-toc__title {
+  margin-bottom: 0.9rem;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.post-toc__toggle {
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-main);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.post-toc__toggle-icon {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.post-toc__toggle[aria-expanded="true"] .post-toc__toggle-icon {
+  transform: rotate(225deg);
+}
+
+.post-toc__nav > nav > ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+.post-toc__nav ul {
+  list-style: none;
+}
+
+.post-toc__nav li + li {
+  margin-top: 0.35rem;
+}
+
+.post-toc__nav ul ul {
+  margin-top: 0.35rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--border-color);
+}
+
+.post-toc__nav a {
+  display: inline-block;
+  color: var(--text-muted);
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.post-toc__nav a:hover,
+.post-toc__nav a:focus,
+.post-toc__nav a.is-active {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
 
 /* ----------------------------------
    新增：常用 HTML 标签样式支持
@@ -418,7 +525,34 @@ main mark {
 /* 平板尺寸 */
 @media (max-width: 1024px) {
   .card {
-    width: 70%; /* 使用百分比，或者保持 max-width */
+    width: 100%;
+  }
+
+  .layout-shell--with-toc {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .toc-card {
+    position: static;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .post-toc__toggle {
+    display: flex;
+    margin-bottom: 0;
+  }
+
+  .post-toc__title {
+    display: none;
+  }
+
+  .post-toc__nav {
+    display: none;
+  }
+
+  .post-toc.is-open .post-toc__nav {
+    display: block;
+    margin-top: 0.75rem;
   }
 }
 
@@ -431,6 +565,10 @@ main mark {
   .card {
     width: 100%;
     padding: 1.5rem; /* 减小内边距 */
+  }
+
+  .layout-shell {
+    gap: 1.25rem;
   }
 
   .header-inner {

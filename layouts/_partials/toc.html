@@ -1,0 +1,19 @@
+{{ if ne .TableOfContents "" }}
+  <aside class="toc-card post-toc" aria-label="文章目录">
+    <div class="post-toc__inner">
+      <div class="post-toc__title">目录</div>
+      <button
+        class="post-toc__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="post-toc-nav"
+      >
+        <span>展开目录</span>
+        <span class="post-toc__toggle-icon" aria-hidden="true"></span>
+      </button>
+      <nav class="post-toc__nav" id="post-toc-nav">
+        {{ .TableOfContents }}
+      </nav>
+    </div>
+  </aside>
+{{ end }}
