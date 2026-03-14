@@ -7,8 +7,57 @@
 
 {{ $bg := .Site.Params.backgroundImage | default "images/default_bg.png" }}
 <body style="--bg-img: url('{{ $bg | relURL }}');">
+    {{ $hasMainMenu := gt (len site.Menus.main) 0 }}
+    {{ $hasToc := ne .TableOfContents "" }}
+    <div class="mobile-appbar" role="banner">
+        <div class="mobile-appbar__inner">
+            {{ if $hasMainMenu }}
+            <button
+                class="site-nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-sidebar"
+                aria-label="打开导航菜单"
+            >
+                <span class="material-icons" aria-hidden="true">menu</span>
+            </button>
+            {{ end }}
+            <div class="mobile-appbar__text">
+                <a class="mobile-appbar__title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+                <span class="mobile-appbar__page">
+                    {{ if .IsHome }}
+                    首页
+                    {{ else }}
+                    {{ .Title }}
+                    {{ end }}
+                </span>
+            </div>
+            {{ if $hasToc }}
+            <button
+                class="mobile-toc-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="post-toc-nav"
+                aria-label="打开目录"
+            >
+                <span class="material-icons" aria-hidden="true">toc</span>
+            </button>
+            {{ end }}
+        </div>
+    </div>
+
     <div class="root">
-        <div class="layout-shell{{ if ne .TableOfContents "" }} layout-shell--with-toc{{ end }}">
+        <div class="layout-shell{{ if $hasMainMenu }} layout-shell--with-sidebar{{ end }}{{ if $hasToc }} layout-shell--with-toc{{ end }}">
+            {{ if $hasMainMenu }}
+            <aside class="sidebar-card site-sidebar" id="site-sidebar" aria-label="站点导航">
+                <div class="site-sidebar__title">导航</div>
+                <div class="site-sidebar__nav">
+                    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+                </div>
+            </aside>
+            <button class="site-sidebar__backdrop" type="button" aria-hidden="true" tabindex="-1"></button>
+            {{ end }}
+
             <div class="card">
                 <header>
                     {{ partial "header.html" . }}

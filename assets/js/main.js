@@ -4,24 +4,75 @@ document.addEventListener('DOMContentLoaded', () => {
   const toc = document.querySelector('.post-toc');
   const tocToggle = toc?.querySelector('.post-toc__toggle');
   const tocToggleLabel = tocToggle?.querySelector('span');
+  const mobileTocToggle = document.querySelector('.mobile-toc-toggle');
   const tocLinks = toc ? Array.from(toc.querySelectorAll('.post-toc__nav a')) : [];
   const backToTop = document.querySelector('.back-to-top');
+  const navToggle = document.querySelector('.site-nav-toggle');
+  const siteSidebar = document.querySelector('.site-sidebar');
+  const sidebarBackdrop = document.querySelector('.site-sidebar__backdrop');
+  const sidebarLinks = siteSidebar ? Array.from(siteSidebar.querySelectorAll('a')) : [];
+
+  const setNavOpen = (isOpen) => {
+    document.body.classList.toggle('is-nav-open', isOpen);
+
+    if (navToggle) {
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+      navToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+    }
+  };
+
+  if (navToggle && siteSidebar && sidebarBackdrop) {
+    navToggle.addEventListener('click', () => {
+      setNavOpen(!document.body.classList.contains('is-nav-open'));
+    });
+
+    sidebarBackdrop.addEventListener('click', () => {
+      setNavOpen(false);
+    });
+
+    sidebarLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          setNavOpen(false);
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        setNavOpen(false);
+      }
+    });
+  }
 
   const setToggleState = (isOpen) => {
-    if (!toc || !tocToggle) {
+    if (!toc) {
       return;
     }
 
     toc.classList.toggle('is-open', isOpen);
-    tocToggle.setAttribute('aria-expanded', String(isOpen));
+    if (tocToggle) {
+      tocToggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    if (mobileTocToggle) {
+      mobileTocToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileTocToggle.setAttribute('aria-label', isOpen ? '收起目录' : '打开目录');
+    }
 
     if (tocToggleLabel) {
       tocToggleLabel.textContent = isOpen ? '收起目录' : '展开目录';
     }
   };
 
-  if (toc && tocToggle) {
+  if (tocToggle) {
     tocToggle.addEventListener('click', () => {
+      setToggleState(!toc.classList.contains('is-open'));
+    });
+  }
+
+  if (toc && mobileTocToggle) {
+    mobileTocToggle.addEventListener('click', () => {
       setToggleState(!toc.classList.contains('is-open'));
     });
   }
