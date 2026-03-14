@@ -1,0 +1,51 @@
+name: Sync Site Submodule
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  sync-submodule:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout theme repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout site repo
+        uses: actions/checkout@v4
+        with:
+          repository: Saiba-Midori-Projects/SaibaMidori.moe
+          token: ${{ secrets.THEME_MIDORI_GIT_SYNC_TOKEN }}
+          path: site-repo
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update theme submodule pointer
+        env:
+          THEME_SHA: ${{ github.sha }}
+        run: |
+          cd site-repo/themes/midori
+          git fetch origin "$THEME_SHA"
+          git checkout --detach "$THEME_SHA"
+
+          cd ../..
+          git add themes/midori
+
+          if git diff --cached --quiet; then
+            echo "No submodule update needed."
+            exit 0
+          fi
+
+          short_sha="$(printf '%s' "$THEME_SHA" | cut -c1-7)"
+          git commit -m "chore: sync theme submodule to ${short_sha}"
+          git push
