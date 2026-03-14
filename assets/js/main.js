@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tocToggle = toc?.querySelector('.post-toc__toggle');
   const tocToggleLabel = tocToggle?.querySelector('span');
   const tocLinks = toc ? Array.from(toc.querySelectorAll('.post-toc__nav a')) : [];
+  const backToTop = document.querySelector('.back-to-top');
 
   const setToggleState = (isOpen) => {
     if (!toc || !tocToggle) {
@@ -23,6 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
     tocToggle.addEventListener('click', () => {
       setToggleState(!toc.classList.contains('is-open'));
     });
+  }
+
+  if (backToTop) {
+    const updateBackToTop = () => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 280);
+    };
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
   }
 
   if (tocLinks.length === 0) {
