@@ -30,6 +30,7 @@
   --sidebar-width: 220px;
   --toc-width: 240px;
   --content-width: 800px;
+  --anchor-offset: 1.5rem;
   
   /* 默认背景图占位 (如果在 HTML 未定义变量) */
   --bg-img: none; 
@@ -503,7 +504,7 @@ main th {
 }
 
 .post-content :is(h1, h2, h3, h4, h5, h6) {
-  scroll-margin-top: 1.5rem;
+  scroll-margin-top: var(--anchor-offset);
 }
 
 .toc-card {
@@ -783,6 +784,10 @@ main mark {
 
 /* 平板尺寸 */
 @media (max-width: 1024px) {
+  :root {
+    --anchor-offset: 6.5rem;
+  }
+
   .card {
     width: 100%;
   }
