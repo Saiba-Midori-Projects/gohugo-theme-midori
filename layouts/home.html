@@ -1,11 +1,18 @@
 {{ define "main" }}
   <article class="post-content">
     {{ .Content }}
-    {{ range site.RegularPages }}
-      <section>
-        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-        {{ .Summary }}
-      </section>
+    {{ if site.Params.homeListPages }}
+      {{ $sections := site.Params.homeListSections | default (slice) }}
+      {{ $pages := site.RegularPages }}
+      {{ if gt (len $sections) 0 }}
+        {{ $pages = where site.RegularPages "Section" "in" $sections }}
+      {{ end }}
+      {{ range $pages }}
+        <section>
+          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+          {{ .Summary }}
+        </section>
+      {{ end }}
     {{ end }}
   </article>
 {{ end }}

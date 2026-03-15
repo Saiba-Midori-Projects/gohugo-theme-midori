@@ -32,6 +32,8 @@ contentDir = 'exampleSite/content'
 [params]
     themeName = "Midori"
     version = "0.1.1"
+    homeListPages = false
+    # homeListSections = ["posts"]
   [params.author]
     name = 'KFACBT'
     email = 'gytxtx@outlook.com'
