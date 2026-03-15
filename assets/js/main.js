@@ -17,7 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navToggle) {
       navToggle.setAttribute('aria-expanded', String(isOpen));
-      navToggle.setAttribute('aria-label', isOpen ? '关闭导航菜单' : '打开导航菜单');
+      navToggle.setAttribute(
+        'aria-label',
+        isOpen ? navToggle.dataset.labelClose || '' : navToggle.dataset.labelOpen || ''
+      );
     }
   };
 
@@ -57,11 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileTocToggle) {
       mobileTocToggle.setAttribute('aria-expanded', String(isOpen));
-      mobileTocToggle.setAttribute('aria-label', isOpen ? '收起目录' : '打开目录');
+      mobileTocToggle.setAttribute(
+        'aria-label',
+        isOpen ? mobileTocToggle.dataset.labelClose || '' : mobileTocToggle.dataset.labelOpen || ''
+      );
     }
 
     if (tocToggleLabel) {
-      tocToggleLabel.textContent = isOpen ? '收起目录' : '展开目录';
+      tocToggleLabel.textContent = isOpen
+        ? tocToggle?.dataset.labelClose || ''
+        : tocToggle?.dataset.labelOpen || '';
     }
   };
 

@@ -1,0 +1,14 @@
+{{ $translations := .AllTranslations }}
+{{ if gt (len $translations) 1 }}
+  <nav class="language-switcher" aria-label="{{ T "language.switcher" }}">
+    {{ range $translations }}
+      <a
+        class="language-switcher__link{{ if eq .Language.Lang $.Language.Lang }} is-active{{ end }}"
+        href="{{ .RelPermalink }}"
+        lang="{{ .Language.Lang }}"
+      >
+        {{ .Language.LanguageName }}
+      </a>
+    {{ end }}
+  </nav>
+{{ end }}

@@ -20,7 +20,9 @@
                 type="button"
                 aria-expanded="false"
                 aria-controls="site-sidebar"
-                aria-label="打开导航菜单"
+                aria-label="{{ T "nav.openMenu" }}"
+                data-label-open="{{ T "nav.openMenu" }}"
+                data-label-close="{{ T "nav.closeMenu" }}"
             >
                 <span class="material-icons" aria-hidden="true">menu</span>
             </button>
@@ -29,31 +31,36 @@
                 <a class="mobile-appbar__title" href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
                 <span class="mobile-appbar__page">
                     {{ if .IsHome }}
-                    首页
+                    {{ T "common.home" }}
                     {{ else }}
                     {{ .Title }}
                     {{ end }}
                 </span>
             </div>
+            <div class="mobile-appbar__actions">
+                {{ partial "language-switcher.html" . }}
             {{ if $hasToc }}
             <button
                 class="mobile-toc-toggle"
                 type="button"
                 aria-expanded="false"
                 aria-controls="post-toc-nav"
-                aria-label="打开目录"
+                aria-label="{{ T "toc.open" }}"
+                data-label-open="{{ T "toc.open" }}"
+                data-label-close="{{ T "toc.close" }}"
             >
                 <span class="material-icons" aria-hidden="true">toc</span>
             </button>
             {{ end }}
+            </div>
         </div>
     </div>
 
     <div class="root">
         <div class="layout-shell{{ if $hasMainMenu }} layout-shell--with-sidebar{{ end }}{{ if $hasToc }} layout-shell--with-toc{{ end }}">
             {{ if $hasMainMenu }}
-            <aside class="sidebar-card site-sidebar" id="site-sidebar" aria-label="站点导航">
-                <div class="site-sidebar__title">导航</div>
+            <aside class="sidebar-card site-sidebar" id="site-sidebar" aria-label="{{ T "nav.ariaLabel" }}">
+                <div class="site-sidebar__title">{{ T "nav.title" }}</div>
                 <div class="site-sidebar__nav">
                     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
                 </div>
@@ -78,9 +85,9 @@
         </div>
     </div>
 
-    <button class="back-to-top" type="button" aria-label="返回顶部">
+    <button class="back-to-top" type="button" aria-label="{{ T "common.backToTop" }}">
         <span class="material-icons back-to-top__icon" aria-hidden="true">arrow_upward</span>
-        <span class="back-to-top__label">返回顶部</span>
+        <span class="back-to-top__label">{{ T "common.backToTop" }}</span>
     </button>
 
     <script>

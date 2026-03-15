@@ -1,0 +1,50 @@
+[common.home]
+other = "Home"
+
+[common.backToTop]
+other = "Back to top"
+
+[header.browsing]
+other = "Browsing"
+
+[language.switcher]
+other = "Language switcher"
+
+[nav.title]
+other = "Navigation"
+
+[nav.ariaLabel]
+other = "Site navigation"
+
+[nav.openMenu]
+other = "Open navigation menu"
+
+[nav.closeMenu]
+other = "Close navigation menu"
+
+[toc.title]
+other = "Contents"
+
+[toc.ariaLabel]
+other = "Table of contents"
+
+[toc.open]
+other = "Open table of contents"
+
+[toc.close]
+other = "Close table of contents"
+
+[toc.expand]
+other = "Expand contents"
+
+[toc.collapse]
+other = "Collapse contents"
+
+[menu.home]
+other = "Home"
+
+[menu.posts]
+other = "Posts"
+
+[menu.tags]
+other = "Tags"

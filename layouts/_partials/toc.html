@@ -1,14 +1,16 @@
 {{ if ne .TableOfContents "" }}
-  <aside class="toc-card post-toc" aria-label="文章目录">
+  <aside class="toc-card post-toc" aria-label="{{ T "toc.ariaLabel" }}">
     <div class="post-toc__inner">
-      <div class="post-toc__title">目录</div>
+      <div class="post-toc__title">{{ T "toc.title" }}</div>
       <button
         class="post-toc__toggle"
         type="button"
         aria-expanded="false"
         aria-controls="post-toc-nav"
+        data-label-open="{{ T "toc.expand" }}"
+        data-label-close="{{ T "toc.collapse" }}"
       >
-        <span>展开目录</span>
+        <span>{{ T "toc.expand" }}</span>
         <span class="post-toc__toggle-icon" aria-hidden="true"></span>
       </button>
       <nav class="post-toc__nav" id="post-toc-nav">

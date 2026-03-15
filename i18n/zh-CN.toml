@@ -1,0 +1,50 @@
+[common.home]
+other = "首页"
+
+[common.backToTop]
+other = "返回顶部"
+
+[header.browsing]
+other = "正在浏览"
+
+[language.switcher]
+other = "语言切换"
+
+[nav.title]
+other = "导航"
+
+[nav.ariaLabel]
+other = "站点导航"
+
+[nav.openMenu]
+other = "打开导航菜单"
+
+[nav.closeMenu]
+other = "关闭导航菜单"
+
+[toc.title]
+other = "目录"
+
+[toc.ariaLabel]
+other = "文章目录"
+
+[toc.open]
+other = "打开目录"
+
+[toc.close]
+other = "收起目录"
+
+[toc.expand]
+other = "展开目录"
+
+[toc.collapse]
+other = "收起目录"
+
+[menu.home]
+other = "首页"
+
+[menu.posts]
+other = "文章"
+
+[menu.tags]
+other = "标签"
