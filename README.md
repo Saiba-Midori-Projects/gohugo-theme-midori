@@ -2,7 +2,7 @@
 
 Midori is a clean Hugo theme with a left navigation rail, optional table of contents, mobile app bar and drawer navigation, multilingual UI strings, and a lightweight reading-focused layout.
 
-[简体中文说明](README.zh-CN.md)
+[简体中文说明](README.zh-CN.md) | [View demo](https://saibamidori.moe/)
 
 ## Features
 

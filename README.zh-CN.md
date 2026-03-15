@@ -2,7 +2,7 @@
 
 Midori 是一个简洁的 Hugo 主题，提供左侧导航栏、可选目录卡片、移动端 App Bar 与抽屉式导航、多语言界面文案，以及偏阅读体验的页面布局。
 
-[English README](README.md)
+[English README](README.md) | [查看演示](https://saibamidori.moe/)
 
 ## 特性
 
