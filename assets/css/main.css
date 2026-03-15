@@ -822,7 +822,7 @@ main mark {
     gap: 0.85rem;
     min-height: 4rem;
     padding: 0.75rem 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     background: color-mix(in srgb, var(--card-bg) 90%, var(--primary-color) 10%);
     box-shadow: var(--shadow-card);
     backdrop-filter: saturate(160%) blur(10px);
