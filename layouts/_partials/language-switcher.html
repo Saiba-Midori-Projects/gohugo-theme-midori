@@ -1,4 +1,17 @@
-{{ if .IsTranslated }}
+{{ $showSwitcher := .IsTranslated }}
+{{ if .IsHome }}
+  {{ $showSwitcher = false }}
+  {{ $translations := .AllTranslations }}
+  {{ $hasAllHomeFiles := gt (len $translations) 1 }}
+  {{ range $translations }}
+    {{ if not .File }}
+      {{ $hasAllHomeFiles = false }}
+    {{ end }}
+  {{ end }}
+  {{ $showSwitcher = $hasAllHomeFiles }}
+{{ end }}
+
+{{ if $showSwitcher }}
   {{ $translations := .AllTranslations }}
   <nav class="language-switcher" aria-label="{{ T "language.switcher" }}">
     {{ range $translations }}
