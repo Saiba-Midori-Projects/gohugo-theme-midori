@@ -1,8 +1,7 @@
 baseURL = 'https://example.org/'
 defaultContentLanguage = 'zh-CN'
 defaultContentLanguageInSubdir = false
-contentDir = 'exampleSite/content'
-# theme = 'midori'
+theme = 'gohugo-theme-midori'
 
 [languages]
   [languages.zh-CN]
@@ -24,27 +23,30 @@ contentDir = 'exampleSite/content'
     pageRef = '/'
     weight = 10
 
+  [[menus.main]]
+    identifier = 'menu.testing'
+    name = 'Testing'
+    pageRef = '/testing'
+    weight = 20
+
 [module]
   [module.hugoVersion]
     extended = false
     min = '0.146.0'
 
 [params]
-    themeName = "Midori"
-    version = "0.1.1"
+  themeName = "Midori"
+  version = "0.1.1"
+
   [params.author]
     name = 'KFACBT'
     email = 'gytxtx@outlook.com'
 
 disableKinds = ["taxonomy", "term", "RSS"]
 
-# ==========================================================
-# Markdown 渲染设置
-# ==========================================================
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      # 设置为 true 以允许在 Markdown 文件中直接写 HTML 标签
       unsafe = true
   [markup.tableOfContents]
     startLevel = 1

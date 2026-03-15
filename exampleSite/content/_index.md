@@ -70,7 +70,7 @@ draft = false
 这是一个链接：[Google 搜索](https://www.google.com/)
 
 这是一个图片示例：
-![示例图片](default_bg.png)
+![示例图片](/images/default_bg.png)
 
 ---
 

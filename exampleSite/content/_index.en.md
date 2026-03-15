@@ -44,7 +44,7 @@ This is `inline code`.
 
 [Search with Google](https://www.google.com/)
 
-![Sample image](default_bg.png)
+![Sample image](/images/default_bg.png)
 
 ---
 
