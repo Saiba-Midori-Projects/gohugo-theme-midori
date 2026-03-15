@@ -7,7 +7,10 @@
 
 {{ $bg := .Site.Params.backgroundImage | default "images/default_bg.png" }}
 <body style="--bg-img: url('{{ $bg | relURL }}');">
-    {{ $hasMainMenu := gt (len site.Menus.main) 0 }}
+    {{ $hasMainMenu := false }}
+    {{ with site.Menus.main }}
+    {{ $hasMainMenu = gt (len .) 0 }}
+    {{ end }}
     {{ $hasToc := ne .TableOfContents "" }}
     <div class="mobile-appbar" role="banner">
         <div class="mobile-appbar__inner">
