@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const tocToggle = toc?.querySelector('.post-toc__toggle');
   const tocToggleLabel = tocToggle?.querySelector('span');
   const mobileTocToggle = document.querySelector('.mobile-toc-toggle');
+  const tocBackdrop = document.querySelector('.post-toc__backdrop');
   const tocLinks = toc ? Array.from(toc.querySelectorAll('.post-toc__nav a')) : [];
   const backToTop = document.querySelector('.back-to-top');
   const navToggle = document.querySelector('.site-nav-toggle');
@@ -37,6 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      setNavOpen(false);
+      setToggleState(false);
+    }
+  });
+
   if (navToggle && siteSidebar && sidebarBackdrop) {
     navToggle.addEventListener('click', () => {
       setNavOpen(!document.body.classList.contains('is-nav-open'));
@@ -52,12 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
           setNavOpen(false);
         }
       });
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        setNavOpen(false);
-      }
     });
   }
 
@@ -95,6 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toc && mobileTocToggle) {
     mobileTocToggle.addEventListener('click', () => {
       setToggleState(!toc.classList.contains('is-open'));
+    });
+  }
+
+  if (tocBackdrop) {
+    tocBackdrop.addEventListener('click', () => {
+      setToggleState(false);
     });
   }
 
