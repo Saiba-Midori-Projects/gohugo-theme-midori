@@ -1,5 +1,5 @@
-{{ $translations := .AllTranslations }}
-{{ if gt (len $translations) 1 }}
+{{ if .IsTranslated }}
+  {{ $translations := .AllTranslations }}
   <nav class="language-switcher" aria-label="{{ T "language.switcher" }}">
     {{ range $translations }}
       <a
