@@ -11,7 +11,8 @@
     {{ with site.Menus.main }}
     {{ $hasMainMenu = gt (len .) 0 }}
     {{ end }}
-    {{ $hasToc := ne .TableOfContents "" }}
+    {{ $toc := .TableOfContents }}
+    {{ $hasToc := in $toc "<a href=\"#" }}
     <div class="mobile-appbar" role="banner">
         <div class="mobile-appbar__inner">
             {{ if $hasMainMenu }}
