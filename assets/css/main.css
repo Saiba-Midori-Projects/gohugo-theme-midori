@@ -78,7 +78,7 @@ html {
 }
 
 body {
-  font-family: 'Noto Sans SC', Arial, sans-serif;
+  font-family: 'Noto Sans', 'Noto Sans SC', Arial, sans-serif;
   position: relative;
   margin: 0;
   color: var(--text-body);
