@@ -1,5 +1,6 @@
 {{ $toc := .TableOfContents }}
-{{ if in $toc "<a href=\"#" }}
+{{ $tocEnabled := ne .Params.toc false }}
+{{ if and $tocEnabled (in $toc "<a href=\"#") }}
   <aside class="toc-card post-toc" aria-label="{{ T "toc.ariaLabel" }}">
     <div class="post-toc__inner">
       <div class="post-toc__title">{{ T "toc.title" }}</div>

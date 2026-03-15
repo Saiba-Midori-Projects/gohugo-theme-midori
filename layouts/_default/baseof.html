@@ -17,7 +17,8 @@
     {{ $hasMainMenu = gt (len .) 0 }}
     {{ end }}
     {{ $toc := .TableOfContents }}
-    {{ $hasToc := in $toc "<a href=\"#" }}
+    {{ $tocEnabled := ne .Params.toc false }}
+    {{ $hasToc := and $tocEnabled (in $toc "<a href=\"#") }}
     <div class="mobile-appbar" role="banner">
         <div class="mobile-appbar__inner">
             {{ if $hasMainMenu }}

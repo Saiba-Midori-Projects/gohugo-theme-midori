@@ -160,6 +160,7 @@ If `about.en.md` does not exist, the switcher will be hidden on `/about/`.
 
 - TOC is shown only when Hugo generates actual heading links for the page
 - the mobile TOC toggle is also hidden when there is no real TOC
+- you can disable TOC per page with front matter
 - TOC levels follow your Hugo config, for example:
 
 ```toml
@@ -167,6 +168,17 @@ If `about.en.md` does not exist, the switcher will be hidden on `/about/`.
   startLevel = 1
   endLevel = 3
 ```
+
+Per-page example:
+
+```toml
++++
+title = "Home"
+toc = false
++++
+```
+
+When `toc = false`, the theme will hide both the TOC card and the mobile TOC toggle for that page.
 
 ## Homepage Listing
 

@@ -160,6 +160,7 @@ content/about.en.md
 
 - 只有当 Hugo 实际生成了标题链接时，才会显示 TOC
 - 如果没有真实目录项，移动端 TOC 按钮也会一并隐藏
+- 可以通过页面 front matter 单独关闭 TOC
 - TOC 层级由 Hugo 配置控制，例如：
 
 ```toml
@@ -167,6 +168,17 @@ content/about.en.md
   startLevel = 1
   endLevel = 3
 ```
+
+单页面示例：
+
+```toml
++++
+title = "首页"
+toc = false
++++
+```
+
+设置 `toc = false` 后，该页面的 TOC 卡片和移动端 TOC 按钮都会一起隐藏。
 
 ## 首页列表模式
 
