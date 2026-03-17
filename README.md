@@ -4,6 +4,8 @@ Midori is a clean Hugo theme with a left navigation rail, optional table of cont
 
 [简体中文说明](README.zh-CN.md) | [View demo](https://saibamidori.moe/)
 
+![](./others/preview.png)
+
 ## Features
 
 - Clean three-column layout on desktop: navigation, content, TOC

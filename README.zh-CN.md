@@ -4,6 +4,8 @@ Midori 是一个简洁的 Hugo 主题，提供左侧导航栏、可选目录卡�
 
 [English README](README.md) | [查看演示](https://saibamidori.moe/)
 
+![](./others/preview.png)
+
 ## 特性
 
 - 桌面端三栏布局：导航、正文、目录
