@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeName = body?.dataset.themeName || 'Midori';
   const version = body?.dataset.themeVersion || '0.1.0';
   const hugoVersion = body?.dataset.hugoVersion;
+  const mobileAppBar = document.querySelector('.mobile-appbar__inner');
+  const articleMain = document.querySelector('.card main');
   const toc = document.querySelector('.post-toc');
   const tocToggle = toc?.querySelector('.post-toc__toggle');
   const tocToggleLabel = tocToggle?.querySelector('span');
@@ -24,6 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
       'background: #333; color: #fff; padding: 5px 0; font-weight: bold;',
       'background: #eee; color: #333; padding: 5px 0; border-radius: 0 3px 3px 0;'
     );
+  }
+
+  if (mobileAppBar && articleMain) {
+    let progressFrame = 0;
+
+    const updateReadingProgress = () => {
+      const top = articleMain.getBoundingClientRect().top + window.scrollY;
+      const total = Math.max(articleMain.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max((window.scrollY - top) / total, 0), 1);
+
+      mobileAppBar.style.setProperty('--reading-progress', progress.toFixed(4));
+      progressFrame = 0;
+    };
+
+    const requestReadingProgressUpdate = () => {
+      if (progressFrame !== 0) {
+        return;
+      }
+
+      progressFrame = window.requestAnimationFrame(updateReadingProgress);
+    };
+
+    window.addEventListener('scroll', requestReadingProgressUpdate, { passive: true });
+    window.addEventListener('resize', requestReadingProgressUpdate);
+    requestReadingProgressUpdate();
   }
 
   const setNavOpen = (isOpen) => {
