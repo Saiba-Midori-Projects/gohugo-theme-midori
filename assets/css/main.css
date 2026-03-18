@@ -1022,8 +1022,20 @@ main mark {
     padding: 0 0.75rem;
   }
 
+  .back-to-top:hover,
+  .back-to-top:focus-visible {
+    gap: 0;
+    padding: 0 0.75rem;
+  }
+
   .back-to-top__label {
     display: none;
+  }
+
+  .back-to-top:hover .back-to-top__label,
+  .back-to-top:focus-visible .back-to-top__label {
+    max-width: 0;
+    opacity: 0;
   }
 
   .header-inner {
