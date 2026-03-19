@@ -1,1 +1,7 @@
-<p>Copyright &copy; {{ now.Year }} <a href="mailto:{{ .Site.Params.author.email }}" target="_blank">{{ .Site.Params.author.name }}</a>. All rights reserved.</p>
+{{ with .Site.Params.footerHTML }}
+  <div class="site-footer__custom">
+    {{ . | safeHTML }}
+  </div>
+{{ else }}
+  <p>Copyright &copy; {{ now.Year }} <a href="mailto:{{ .Site.Params.author.email }}" target="_blank">{{ .Site.Params.author.name }}</a>. All rights reserved.</p>
+{{ end }}

@@ -84,6 +84,7 @@ The theme currently reads these custom parameters from `params`:
   version = "0.1.1"
   favicon = "/favicon.ico"
   backgroundImage = "images/default_bg.png"
+  footerHTML = "<span>Copyright &copy; 2026 <a href='https://example.org'>Your Site</a></span>"
   homeListPages = false
   # homeListSections = ["posts"]
 
@@ -94,12 +95,25 @@ The theme currently reads these custom parameters from `params`:
 
 - `params.backgroundImage`: page background image, used by the main layout. Relative static paths such as `images/bg.png` work well.
 - `params.favicon`: favicon URL. If omitted, the theme falls back to `/favicon.ico`.
+- `params.footerHTML`: custom footer HTML. When set, it replaces the default copyright line.
 - `params.author.name`: author name shown in the footer copyright area.
 - `params.author.email`: author email used for the footer mail link.
 - `params.themeName`: theme name shown in the browser console badge.
 - `params.version`: theme version shown in the browser console badge.
 - `params.homeListPages`: enables homepage page listing mode.
 - `params.homeListSections`: limits homepage listing to specific sections when `homeListPages = true`.
+
+Example:
+
+```toml
+[params]
+  footerHTML = """
+  <span>Copyright &copy; 2026 <a href="https://example.org">Your Site</a></span>
+  <span style="margin-left: 0.5rem;">Powered by Hugo</span>
+  """
+```
+
+If `footerHTML` is not set, the theme falls back to the old author-and-email footer.
 
 ## Navigation
 

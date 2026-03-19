@@ -84,6 +84,7 @@ theme = "midori"
   version = "0.1.1"
   favicon = "/favicon.ico"
   backgroundImage = "images/default_bg.png"
+  footerHTML = "<span>Copyright &copy; 2026 <a href='https://example.org'>Your Site</a></span>"
   homeListPages = false
   # homeListSections = ["posts"]
 
@@ -94,12 +95,25 @@ theme = "midori"
 
 - `params.backgroundImage`：页面背景图，由主布局读取，适合填写 `images/bg.png` 这类相对静态资源路径。
 - `params.favicon`：站点 favicon 地址；未设置时会回退到 `/favicon.ico`。
+- `params.footerHTML`：页脚自定义 HTML；设置后会直接替代默认的作者邮箱版权文案。
 - `params.author.name`：页脚版权区域显示的作者名。
 - `params.author.email`：页脚作者链接使用的邮箱地址。
 - `params.themeName`：浏览器控制台主题标识中显示的主题名。
 - `params.version`：浏览器控制台主题标识中显示的版本号。
 - `params.homeListPages`：是否启用首页列表模式。
 - `params.homeListSections`：当 `homeListPages = true` 时，用于限制首页仅列出指定 section。
+
+示例：
+
+```toml
+[params]
+  footerHTML = """
+  <span>Copyright &copy; 2026 <a href="https://example.org">Your Site</a></span>
+  <span style="margin-left: 0.5rem;">Powered by Hugo</span>
+  """
+```
+
+如果未设置 `footerHTML`，主题仍会回退到旧的作者邮箱版权样式。
 
 ## 导航栏
 

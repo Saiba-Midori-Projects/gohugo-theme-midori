@@ -423,7 +423,34 @@ footer {
   font-size: 13px;
   margin-top: 2rem;
   display: flex;
+  width: 100%;
   justify-content: flex-end; /* 右对齐 */
+}
+
+.site-footer__custom {
+  min-width: 0;
+  max-width: 100%;
+  margin-left: auto;
+  line-height: 1.7;
+  text-align: right;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.site-footer__custom > :first-child {
+  margin-top: 0;
+}
+
+.site-footer__custom > :last-child {
+  margin-bottom: 0;
+}
+
+.site-footer__custom :is(p, div, span, a, small, strong, em, code) {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* =========================================

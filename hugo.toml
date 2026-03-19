@@ -34,9 +34,11 @@ contentDir = 'exampleSite/content'
     version = "0.2.0"
     homeListPages = false
     # homeListSections = ["posts"]
-  [params.author]
-    name = 'KFACBT'
-    email = 'gytxtx@outlook.com'
+
+  footerHTML = """
+  <p>Copyright &copy; 2026 <a href="https://github.com/gytxtx">KFACBT</a>. All rights reserved.</p>
+  <p style="margin-left: 0.5rem;"><a href="https://github.com/Saiba-Midori-Projects/gohugo-theme-midori">在 GitHub 上查看源代码</a></p>
+  """
 
 disableKinds = ["taxonomy", "term", "RSS"]
 
